@@ -53,12 +53,20 @@ class _GridToListState extends State<GridToList> {
             controller: controller,
             onTap: (i) {
               if (!controller.isExpanded) {
-                controller.expand(i, const Duration(seconds: 2));
+                controller.expand(i, const Duration(seconds: 1));
               } else {
-                controller.shrink(const Duration(seconds: 2));
+                controller.shrink(const Duration(seconds: 0));
               }
             },
             itemBuilder: AnimatedGridToListItemBuilder(
+              wrapAlignment: WrapAlignment.start,
+              animatedItemBuilder: (context, index) => Container(
+                height: MediaQuery.of(context).size.height * 0.6,
+                width: MediaQuery.of(context).size.width * 0.8,
+                color: containers[index].color,
+                padding: const EdgeInsets.all(8),
+                child: Text('Item $index IS ANIMATING'),
+              ),
               gridItemBuilder: (context, index) {
                 return containers[index];
               },

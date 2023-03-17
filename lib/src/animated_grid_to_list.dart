@@ -297,6 +297,11 @@ class AnimatedGridToListController extends ChangeNotifier {
       _controller.addListener(_listenerFunction);
 
       _controller.forward();
+      if (duration?.inMilliseconds == 0) {
+        _controller.value = _controller.value > _controller.upperBound / 2
+            ? _controller.upperBound
+            : _controller.lowerBound;
+      }
     }
   }
 }

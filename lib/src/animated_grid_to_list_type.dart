@@ -34,7 +34,7 @@ extension Render on GridToListType {
   }) {
     return !isAnimating
         ? Wrap(
-            alignment: WrapAlignment.center,
+            alignment: itemBuilder.wrapAlignment,
             spacing: spacing,
             children: [
               for (int i = 0; i < itemBuilder.itemCount; i++) ...[
@@ -73,7 +73,9 @@ extension Render on GridToListType {
               width: boxWidth ?? itemBuilder.listItemSize.width,
               height: boxHeight ?? itemBuilder.listItemSize.height,
               child: GestureDetector(
-                child: itemBuilder.listItemBuilder(context, tappedItem!),
+                child: itemBuilder.animatedItemBuilder != null
+                    ? itemBuilder.animatedItemBuilder!(context, tappedItem!)
+                    : itemBuilder.listItemBuilder(context, tappedItem!),
               ),
             ),
           );

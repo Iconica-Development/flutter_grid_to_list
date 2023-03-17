@@ -21,6 +21,8 @@ class AnimatedGridToListItemBuilder {
     required this.itemCount,
     required this.gridItemSize,
     required this.listItemSize,
+    this.animatedItemBuilder,
+    this.wrapAlignment = WrapAlignment.center,
   });
 
   /// [IndexedWidgetBuilder] which build the items in grid state.
@@ -29,11 +31,17 @@ class AnimatedGridToListItemBuilder {
   /// [IndexedWidgetBuilder] which build the items in list state.
   final IndexedWidgetBuilder listItemBuilder;
 
+  /// [IndexedWidgetBuilder] which build the items in animated state.
+  final IndexedWidgetBuilder? animatedItemBuilder;
+
   /// A [Size] to build the items in the correct manner and handle scrolling in grid state.
   final Size gridItemSize;
 
   /// A [Size] to build the items in the correct manner and handle scrolling in list state.
   final Size listItemSize;
+
+  /// A [WrapAlignment] to align the items in the correct manner.
+  final WrapAlignment wrapAlignment;
 
   /// A [int] of the amount of items to build.
   int itemCount;
