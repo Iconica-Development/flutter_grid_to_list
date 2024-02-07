@@ -10,12 +10,12 @@ export 'animated_grid_to_list_item_builder.dart';
 
 class AnimatedGridToList extends StatefulWidget {
   const AnimatedGridToList({
-    Key? key,
     required this.itemBuilder,
     required this.controller,
+    super.key,
     this.startWithGrid = true,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final AnimatedGridToListItemBuilder itemBuilder;
   final AnimatedGridToListController controller;
@@ -91,14 +91,14 @@ class AnimatedGridToListController extends ChangeNotifier {
   double? _initalHeight;
   double? _initialWidth;
   double? _previousScrollOffset;
-  double? _previousScrollOffsetCopy;
+  late double? _previousScrollOffsetCopy;
   double _spacing = 0;
 
   bool _isAnimating = false;
   bool _isExpanded = false;
 
   int? _tappedItem;
-  int? _prevIndex;
+  late int? _prevIndex;
 
   WrapAlignment _wrapAlignment = WrapAlignment.center;
 
@@ -147,7 +147,7 @@ class AnimatedGridToListController extends ChangeNotifier {
   void _handleScroll(int index) {
     switch (_type) {
       case GridToListType.grid:
-        _scrollController.jumpTo((index * (_boxHeight ?? 0)));
+        _scrollController.jumpTo(index * (_boxHeight ?? 0));
         if ([WrapAlignment.start, WrapAlignment.end].contains(_wrapAlignment) &&
             _controller.value > 0.5) {
           _wrapAlignment = WrapAlignment.center;
@@ -209,8 +209,11 @@ class AnimatedGridToListController extends ChangeNotifier {
     _finalize(_previousScrollOffsetCopy!);
   }
 
-  WrapAlignment _determineAlignment(int index, BuildContext context,
-      AnimatedGridToListItemBuilder itemBuilder) {
+  WrapAlignment _determineAlignment(
+    int index,
+    BuildContext context,
+    AnimatedGridToListItemBuilder itemBuilder,
+  ) {
     var amountOfItems =
         ((context.size?.width ?? 0) / itemBuilder.gridItemSize.width).floor();
 
@@ -253,10 +256,12 @@ class AnimatedGridToListController extends ChangeNotifier {
     }
   }
 
-  /// Can be used to retrieve the status of the widget. This is only useful if you use [shrink] and [expand] methods
+  /// Can be used to retrieve the status of the widget. This is only useful if
+  /// you use [shrink] and [expand] methods
   bool get isExpanded => _isExpanded;
 
-  /// Can be called to shrink to widget to it's grid state. Only works when the current state is of type [GridToListType.list]
+  /// Can be called to shrink to widget to it's grid state. Only works when the
+  /// current state is of type [GridToListType.list]
   void shrink([Duration? duration]) {
     _isExpanded = false;
     if (_type == GridToListType.list) {
@@ -264,7 +269,8 @@ class AnimatedGridToListController extends ChangeNotifier {
     }
   }
 
-  /// Can be called to expand to widget to it's list state. Only works when the current state is of type [GridToListType.grid]
+  /// Can be called to expand to widget to it's list state. Only works when the
+  /// current state is of type [GridToListType.grid]
   ///
   /// Gets an index to determine which item it needs to transform.
   void expand(int index, [Duration? duration]) {
@@ -275,7 +281,8 @@ class AnimatedGridToListController extends ChangeNotifier {
     }
   }
 
-  /// Can be called to dynamically change the state of the widget. Works in either [GridToListType.grid] or [GridToListType.list]
+  /// Can be called to dynamically change the state of the widget. Works in
+  /// either [GridToListType.grid] or [GridToListType.list]
   ///
   /// Gets an index to determine which item it needs to transform.
   void resize(int index, Duration? duration) {
