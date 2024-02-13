@@ -11,10 +11,10 @@ import 'package:flutter/material.dart';
 /// Requires [listItemBuilder] which is an [IndexedWidgetBuilder] to build items
 /// in [AnimatedGridToList] list state.
 ///
-/// Requires [gridItemSize] which is of type [Size] to build the items and 
+/// Requires [gridItemSize] which is of type [Size] to build the items and
 /// handle the scrolling accordingly.
 ///
-/// Requires [listItemSize] which is of type [Size] to build the items and 
+/// Requires [listItemSize] which is of type [Size] to build the items and
 /// handle the scrolling accordingly.
 ///
 /// It also requires an [itemCount], which is of type [int].
@@ -38,11 +38,11 @@ class AnimatedGridToListItemBuilder {
   /// [IndexedWidgetBuilder] which build the items in animated state.
   final IndexedWidgetBuilder? animatedItemBuilder;
 
-  /// A [Size] to build the items in the correct manner and handle scrolling 
+  /// A [Size] to build the items in the correct manner and handle scrolling
   /// in grid state.
   final Size gridItemSize;
 
-  /// A [Size] to build the items in the correct manner and handle scrolling 
+  /// A [Size] to build the items in the correct manner and handle scrolling
   /// in list state.
   final Size listItemSize;
 
