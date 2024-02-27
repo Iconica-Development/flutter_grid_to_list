@@ -8,7 +8,22 @@ import 'package:flutter_grid_to_list/src/animated_grid_to_list_type.dart';
 
 export 'animated_grid_to_list_item_builder.dart';
 
+/// A widget that animates between a grid and list view.
+///
+/// This widget takes an [itemBuilder] to build the items and a [controller]
+/// to manage the state of the animation.
+/// By default, it starts with a grid view,
+/// but this behavior can be changed by setting [startWithGrid] to false.
+///
+/// The [onTap] function can be provided to handle tap events on items.
 class AnimatedGridToList extends StatefulWidget {
+  /// Constructs an [AnimatedGridToList] widget.
+  ///
+  /// The [itemBuilder] is required to build items for the grid and list views.
+  /// The [controller] is required to manage the state of the animation.
+  /// The [startWithGrid] parameter determines whether the widget
+  /// starts with a grid view.
+  /// The [onTap] function can be used to handle tap events on items.
   const AnimatedGridToList({
     required this.itemBuilder,
     required this.controller,
@@ -75,6 +90,11 @@ class _AnimatedGridToListState extends State<AnimatedGridToList>
   }
 }
 
+/// A controller class for managing the state of
+/// the [AnimatedGridToList] widget.
+///
+/// This controller provides methods to resize, shrink, or expand the widget,
+/// as well as retrieving the current status of the widget.
 class AnimatedGridToListController extends ChangeNotifier {
   final ScrollController _scrollController = ScrollController();
 
